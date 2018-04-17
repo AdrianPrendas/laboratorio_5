@@ -1,5 +1,6 @@
 package com.example.kevca.sistemaderecomendacion;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -79,18 +80,18 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        Intent intent;
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        if (id == R.id.nav_producto) {
+            intent = new Intent(this,CatalogoActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_usuario) {
+            intent = new Intent(this,UsuariosActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_carrito) {
+            intent = new Intent(this,CarritoActivity.class);
+            startActivity(intent);
+        }  else if (id == R.id.nav_salir) {
 
         }
 
