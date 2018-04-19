@@ -1,0 +1,88 @@
+package com.example.kevca.sistemaderecomendacion.bl
+import com.example.kevca.sistemaderecomendacion.domain.Carrito
+import java.util.ArrayList
+import java.util.Hashtable
+
+
+/**
+ * Created by _Adrian_Prendas_ on 18/04/2018.
+ */
+class CarritoBL: BaseBL<Int, Carrito> {
+
+    override fun create(obj: Carrito): Carrito {
+        hashTable[obj.usuario] = obj
+        return obj
+    }
+
+    override fun read(key: Int): Carrito? {
+        return hashTable[key]
+    }
+
+    override fun readAll(): List<Carrito> {
+        return ArrayList(hashTable.values)
+    }
+
+    override fun update(obj: Carrito): Carrito? {
+        hashTable[obj.usuario]?.let{
+            hashTable[it.usuario] = obj
+        }
+        return hashTable[obj.usuario]
+    }
+
+    override fun delete(key: Int): Carrito?{
+        return hashTable.remove(key)
+    }
+
+    init{
+        //USERS
+        hashTable[964465378] = Carrito(964465378)
+
+        ProductoBL.instance.read(0)?.let {
+            hashTable[964465378]?.addProducto(it)
+        }
+        ProductoBL.instance.read(1)?.let {
+            hashTable[964465378]?.addProducto(it)
+        }
+        ProductoBL.instance.read(2)?.let {
+            hashTable[964465378]?.addProducto(it)
+        }
+
+        hashTable[769438762] = Carrito(769438762)
+
+        ProductoBL.instance.read(3)?.let {
+            hashTable[769438762]?.addProducto(it)
+        }
+        ProductoBL.instance.read(4)?.let {
+            hashTable[769438762]?.addProducto(it)
+        }
+        ProductoBL.instance.read(5)?.let {
+            hashTable[769438762]?.addProducto(it)
+        }
+
+        hashTable[368377663] = Carrito(368377663)
+
+        ProductoBL.instance.read(5)?.let {
+            hashTable[368377663]?.addProducto(it)
+        }
+        ProductoBL.instance.read(6)?.let {
+            hashTable[368377663]?.addProducto(it)
+        }
+        ProductoBL.instance.read(7)?.let {
+            hashTable[368377663]?.addProducto(it)
+        }
+
+        //ADMINS
+        hashTable[304830405] = Carrito(304830405)
+        hashTable[114830575] = Carrito(114830575)
+        hashTable[604140420] = Carrito(604140420)
+
+        ProductoBL.instance.read(0)?.let {
+            hashTable[604140420]?.addProducto(it)
+        }
+    }
+    private object Holder { val INSTANCE = CarritoBL() }
+    companion object {
+        val hashTable = Hashtable<Int, Carrito>()
+        val instance : CarritoBL by lazy{ Holder.INSTANCE }
+    }
+}

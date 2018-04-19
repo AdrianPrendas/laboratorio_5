@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SistemaDeRecomendacion.iml" filepath="$PROJECT_DIR$/SistemaDeRecomendacion.iml" />
+      <module fileurl="file://E:\Carrera\Ciclo I 2018\Moviles\Lab05\laboratorio_5\SistemaDeRecomendacion\SistemaDeRecomendacion.iml" filepath="E:\Carrera\Ciclo I 2018\Moviles\Lab05\laboratorio_5\SistemaDeRecomendacion\SistemaDeRecomendacion.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://E:\Carrera\Ciclo I 2018\Moviles\Lab05\laboratorio_5\SistemaDeRecomendacion\app\app.iml" filepath="E:\Carrera\Ciclo I 2018\Moviles\Lab05\laboratorio_5\SistemaDeRecomendacion\app\app.iml" />
     </modules>
   </component>
 </project>
