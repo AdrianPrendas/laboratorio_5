@@ -59,6 +59,10 @@ class Carrito(var usuario: Int){
         precioTotal = 0.toFloat()
     }
 
+    fun toList(): List<Producto>{
+        return ArrayList(hashtableProductos.values)
+    }
+
 
     override fun toString(): String{
         return "{usuario: "+this.usuario +
