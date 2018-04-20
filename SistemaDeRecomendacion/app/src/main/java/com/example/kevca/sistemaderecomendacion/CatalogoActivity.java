@@ -35,14 +35,16 @@ public class CatalogoActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         listaProductos = new ArrayList<>();
-        adapter = new AdaptadorProducto(this, (ArrayList<Producto>) listaProductos);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(mLayoutManager);
+        listaProductos= new ArrayList<>(productoBL.readAll());
+        adapter = new AdaptadorProducto(this, listaProductos);
+        recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(adapter);
-        listaProductos= new ArrayList<>(productoBL.readAll());
-        adapter.notifyDataSetChanged();
+
+
+        //adapter.notifyDataSetChanged();
 
     }
 

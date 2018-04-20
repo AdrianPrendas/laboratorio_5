@@ -44,7 +44,7 @@
                         android:layout_weight="1">
 
                         <TextView
-                            android:id="@+id/tv_nombreProducto"
+                            android:id="@+id/tv_nombreUsuario"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_toLeftOf="@+id/iv_menup"
@@ -76,15 +76,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Precio: " />
+                            android:text="ID: " />
 
                         <TextView
-                            android:id="@+id/tv_precio"
+                            android:id="@+id/tv_id"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="TextView"
-                            android:textColor="@android:color/holo_red_dark" />
+                            android:text="TextView" />
 
                     </LinearLayout>
 
@@ -99,10 +98,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Cantidad: " />
+                            android:text="Email: " />
 
                         <TextView
-                            android:id="@+id/tv_cantidad"
+                            android:id="@+id/tv_email"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"

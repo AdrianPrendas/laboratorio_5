@@ -13,9 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kevca.sistemaderecomendacion.R;
-import com.example.kevca.sistemaderecomendacion.domain.Producto;
-
-import com.bumptech.glide.Glide;
+import com.example.kevca.sistemaderecomendacion.domain.Usuario;
 
 import java.util.ArrayList;
 
@@ -23,31 +21,31 @@ import java.util.ArrayList;
  * Created by kevca on 4/19/2018.
  */
 
-public class AdaptadorProducto extends RecyclerView.Adapter<AdaptadorProducto.ProductoViewHolder>{
+public class AdaptadorUsuario extends RecyclerView.Adapter<AdaptadorUsuario.UsuarioViewHolder>{
 
-    ArrayList<Producto> listaProductos;
+    ArrayList<Usuario> listaUsuarios;
     Context mContext;
 
-    public AdaptadorProducto(Context mContext, ArrayList<Producto> listaProductos) {
-        this.listaProductos = listaProductos;
+    public AdaptadorUsuario(Context mContext, ArrayList<Usuario> listaUsuarios) {
+        this.listaUsuarios = listaUsuarios;
         this.mContext=mContext;
     }
 
 
     @Override
-    public ProductoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public UsuarioViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.itemlistproducto, parent, false);
+                .inflate(R.layout.itemlistusuario, parent, false);
 
-        return new ProductoViewHolder(itemView);
+        return new UsuarioViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(final ProductoViewHolder holder, int position) {
-        Producto producto = listaProductos.get(position);
-        holder.tv_nombreProducto.setText(producto.getNombre());
-        holder.tv_precio.setText(String.valueOf(producto.getPrecio()));
-        holder.tv_cantidad.setText(String.valueOf(producto.getCantidad()));
+    public void onBindViewHolder(final UsuarioViewHolder holder, int position) {
+        Usuario usuario = listaUsuarios.get(position);
+        holder.tv_nombreUsuario.setText(usuario.getNombre());
+        holder.tv_id.setText(String.valueOf(usuario.getId()));
+        holder.tv_email.setText(String.valueOf(usuario.getEmail()));
 
 
         // loading album cover using Glide library
@@ -63,18 +61,18 @@ public class AdaptadorProducto extends RecyclerView.Adapter<AdaptadorProducto.Pr
 
     @Override
     public int getItemCount() {
-        return listaProductos.size();
+        return listaUsuarios.size();
     }
 
-    public class ProductoViewHolder extends RecyclerView.ViewHolder{
-    TextView tv_nombreProducto,tv_precio,tv_cantidad;
+    public class UsuarioViewHolder extends RecyclerView.ViewHolder{
+    TextView tv_nombreUsuario,tv_id,tv_email;
     ImageView iv_imagen, iv_menup;
 
-    public ProductoViewHolder(View itemView) {
+    public UsuarioViewHolder(View itemView) {
         super(itemView);
-        tv_nombreProducto= (TextView) itemView.findViewById(R.id.tv_nombreProducto);
-        tv_precio= (TextView) itemView.findViewById(R.id.tv_precio);
-        tv_cantidad= (TextView) itemView.findViewById(R.id.tv_cantidad);
+        tv_nombreUsuario= (TextView) itemView.findViewById(R.id.tv_nombreUsuario);
+        tv_id= (TextView) itemView.findViewById(R.id.tv_id);
+        tv_email= (TextView) itemView.findViewById(R.id.tv_email);
         iv_imagen = (ImageView) itemView.findViewById(R.id.iv_imagen);
         iv_menup = (ImageView) itemView.findViewById(R.id.iv_menup);
 
@@ -86,7 +84,7 @@ public class AdaptadorProducto extends RecyclerView.Adapter<AdaptadorProducto.Pr
         // inflate menu
         PopupMenu popup = new PopupMenu(mContext, view); //es el que da la vista para el menu
         MenuInflater inflater = popup.getMenuInflater();
-        inflater.inflate(R.menu.menu_producto, popup.getMenu());
+        inflater.inflate(R.menu.menu_usuario, popup.getMenu());
         popup.setOnMenuItemClickListener(new MyMenuItemClickListener());
         popup.show();
     }
