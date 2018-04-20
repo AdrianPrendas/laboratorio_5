@@ -1,5 +1,6 @@
 package com.example.kevca.sistemaderecomendacion.bl
 import com.example.kevca.sistemaderecomendacion.domain.Carrito
+import com.example.kevca.sistemaderecomendacion.domain.Producto
 import java.util.ArrayList
 import java.util.Hashtable
 
@@ -35,50 +36,52 @@ class CarritoBL: BaseBL<Int, Carrito> {
 
     init{
         //USERS
-        hashTable[964465378] = Carrito(964465378)
+        try {
+            hashTable[964465378] = Carrito(964465378)
 
-        ProductoBL.instance.read(0)?.let {
-            hashTable[964465378]?.addProducto(it)
-        }
-        ProductoBL.instance.read(1)?.let {
-            hashTable[964465378]?.addProducto(it)
-        }
-        ProductoBL.instance.read(2)?.let {
-            hashTable[964465378]?.addProducto(it)
-        }
+            ProductoBL.instance.read(0)?.let {
+                hashTable[964465378]?.addProducto(Producto(it,1))
+            }
+            /*ProductoBL.instance.read(1)?.let {
+                hashTable[964465378]?.addProducto(Producto(it,1))
+            }
+            ProductoBL.instance.read(2)?.let {
+                hashTable[964465378]?.addProducto(Producto(it,2))
+            }*/
 
-        hashTable[769438762] = Carrito(769438762)
+            hashTable[769438762] = Carrito(769438762)
 
-        ProductoBL.instance.read(3)?.let {
-            hashTable[769438762]?.addProducto(it)
-        }
-        ProductoBL.instance.read(4)?.let {
-            hashTable[769438762]?.addProducto(it)
-        }
-        ProductoBL.instance.read(5)?.let {
-            hashTable[769438762]?.addProducto(it)
-        }
+            ProductoBL.instance.read(3)?.let {
+                hashTable[769438762]?.addProducto(Producto(it,3))
+            }
+            /*ProductoBL.instance.read(4)?.let {
+                hashTable[769438762]?.addProducto(Producto(it,1))
+            }
+            ProductoBL.instance.read(5)?.let {
+                hashTable[769438762]?.addProducto(Producto(it,1))
+            }*/
 
-        hashTable[368377663] = Carrito(368377663)
+            hashTable[368377663] = Carrito(368377663)
 
-        ProductoBL.instance.read(5)?.let {
-            hashTable[368377663]?.addProducto(it)
-        }
-        ProductoBL.instance.read(6)?.let {
-            hashTable[368377663]?.addProducto(it)
-        }
-        ProductoBL.instance.read(7)?.let {
-            hashTable[368377663]?.addProducto(it)
-        }
+            ProductoBL.instance.read(5)?.let {
+                hashTable[368377663]?.addProducto(Producto(it,1))
+            }
+            /*ProductoBL.instance.read(6)?.let {
+                hashTable[368377663]?.addProducto(Producto(it,1))
+            }
+            ProductoBL.instance.read(7)?.let {
+                hashTable[368377663]?.addProducto(Producto(it,1))
+            }*/
 
-        //ADMINS
-        hashTable[304830405] = Carrito(304830405)
-        hashTable[114830575] = Carrito(114830575)
-        hashTable[604140420] = Carrito(604140420)
+            //ADMINS
+            hashTable[304830405] = Carrito(304830405)
+            hashTable[114830575] = Carrito(114830575)
+            hashTable[604140420] = Carrito(604140420)
 
-        ProductoBL.instance.read(0)?.let {
-            hashTable[604140420]?.addProducto(it)
-        }
+            ProductoBL.instance.read(0)?.let {
+                hashTable[604140420]?.addProducto(Producto(it,1))
+            }
+        }catch (e: RuntimeException){println(e.message)}
     }
     private object Holder { val INSTANCE = CarritoBL() }
     companion object {

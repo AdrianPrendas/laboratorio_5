@@ -17,17 +17,22 @@ class Test{
         println("\n***Lista de Carritos***")
         CarritoBL.instance.readAll().forEach { println(it) }
 
-        ProductoBL.instance.read(0)?.let{
+        /*ProductoBL.instance.read(0)?.let{
             CarritoBL.instance.read(604140420)?.addProducto(it)
-        }
+        }*/
 
         println("\n***Lista de Productos***")
         ProductoBL.instance.readAll().forEach { println(it) }
 
-        ProductoBL.instance.read(0)?.let{
+        CarritoBL.instance.read(604140420)?.pagar();
+
+        println("\n***Lista de Productos***")
+        ProductoBL.instance.readAll().forEach { println(it) }
+
+        /*ProductoBL.instance.read(0)?.let{
             var p = Producto(it,2)
             println(p)
-        }
+        }*/
 
 
 
