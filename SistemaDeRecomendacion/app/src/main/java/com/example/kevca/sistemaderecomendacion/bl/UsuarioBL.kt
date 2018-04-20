@@ -9,6 +9,8 @@ import java.util.Hashtable
  */
 class UsuarioBL: BaseBL<Int, Usuario> {
 
+    var session = 0
+
     override fun create(obj: Usuario): Usuario {
         hashTable[obj.id] = obj
         return obj

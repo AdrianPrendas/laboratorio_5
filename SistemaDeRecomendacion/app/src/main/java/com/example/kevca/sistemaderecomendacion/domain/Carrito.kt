@@ -13,12 +13,16 @@ class Carrito(var usuario: Int){
     var precioTotal: Float = 0.toFloat()
 
     @Throws(RuntimeException::class)
-    fun addProducto(p: Producto){
+    fun addProducto(product: Producto){
+        var p = Producto(product,1)
         ProductoBL.instance.read(p.id)?.let {
             if(it.cantidad - p.cantidad >= 0){
-                hashtableProductos[p.id] = p
+                hashtableProductos[p.id]?.let {
+                    hashtableProductos[p.id]?.cantidad = it.cantidad.inc()
+                } ?: run{
+                    hashtableProductos[p.id] = p
+                }
                 precioTotal += p.precio * p.cantidad
-                //it.cantidad -= p.cantidad
             }else{
                 throw RuntimeException("Error solo existen "+it.cantidad+" elementos y usted requiere "+p.cantidad)
             }
@@ -26,7 +30,8 @@ class Carrito(var usuario: Int){
     }
 
     @Throws(RuntimeException::class)
-    fun removeProducto(p: Producto){
+    fun removeProducto(product: Producto){
+        var p = Producto(product,1)
         hashtableProductos[p.id]?.let {
             when{
                 it.cantidad - p.cantidad > 0 ->{
