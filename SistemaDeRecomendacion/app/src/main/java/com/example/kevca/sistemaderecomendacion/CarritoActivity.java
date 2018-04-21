@@ -11,50 +11,38 @@ import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.View;
 
+import com.example.kevca.sistemaderecomendacion.bl.CarritoBL;
 import com.example.kevca.sistemaderecomendacion.bl.ProductoBL;
+import com.example.kevca.sistemaderecomendacion.bl.UsuarioBL;
+import com.example.kevca.sistemaderecomendacion.domain.Carrito;
 import com.example.kevca.sistemaderecomendacion.domain.Producto;
+import com.example.kevca.sistemaderecomendacion.domain.Usuario;
 
 import java.util.ArrayList;
 
 import Adaptador.AdaptadorProducto;
+import Adaptador.AdaptadorProductoCarrito;
 
 public class CarritoActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private AdaptadorProducto adapter;
+    private AdaptadorProductoCarrito adapter;
     private ArrayList<Producto> listaProductos;
+    private Carrito carrito;
     public static ProductoBL productoBL = ProductoBL.Companion.getInstance();
+
+    int id=Usuario.Companion.getUSER();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_catalogo);
+        setContentView(R.layout.activity_carrito);
+        carrito= CarritoBL.Companion.getInstance().read(id);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        listaProductos = new ArrayList<>();
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(mLayoutManager);
-        listaProductos= new ArrayList<>(productoBL.readAll());
-        adapter = new AdaptadorProducto(this, listaProductos);
-        recyclerView.setAdapter(adapter);
-        recyclerView.addItemDecoration(new CarritoActivity.GridSpacingItemDecoration(2, dpToPx(10), true));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-
-        //adapter.notifyDataSetChanged();
-
-    }
-
-    protected void onCreate02(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_catalogo);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        listaProductos = new ArrayList<>();
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
-        recyclerView.setLayoutManager(mLayoutManager);
-        listaProductos= new ArrayList<>(productoBL.readAll());
-        adapter = new AdaptadorProducto(this, listaProductos);
+        adapter = new AdaptadorProductoCarrito(this, 114830575);
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new CarritoActivity.GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());

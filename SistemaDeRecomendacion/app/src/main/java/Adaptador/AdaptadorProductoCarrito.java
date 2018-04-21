@@ -34,8 +34,7 @@ public class AdaptadorProductoCarrito extends RecyclerView.Adapter<AdaptadorProd
     public AdaptadorProductoCarrito(Context mContext, int id) {
         this.usuario = UsuarioBL.Companion.getInstance().read(id);
         this.carrito=CarritoBL.Companion.getInstance().read(id);
-        this.listaProductos= null;
-        //this.listaProductos=carrito.getHashtableProductos();
+        this.listaProductos=carrito.toList();
         this.mContext=mContext;
     }
 
