@@ -9,8 +9,6 @@ import java.util.Hashtable
  */
 class UsuarioBL: BaseBL<Int, Usuario> {
 
-    var session = 0
-
     override fun create(obj: Usuario): Usuario {
         hashTable[obj.id] = obj
         return obj
@@ -54,5 +52,6 @@ class UsuarioBL: BaseBL<Int, Usuario> {
     companion object {
         val hashTable = Hashtable<Int, Usuario>()
         val instance : UsuarioBL by lazy{ Holder.INSTANCE }
+        var session = 0
     }
 }

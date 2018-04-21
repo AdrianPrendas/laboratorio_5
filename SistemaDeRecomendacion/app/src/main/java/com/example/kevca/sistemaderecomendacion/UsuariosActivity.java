@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.kevca.sistemaderecomendacion.bl.UsuarioBL;
 import com.example.kevca.sistemaderecomendacion.domain.Usuario;
@@ -39,7 +40,7 @@ public class UsuariosActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(new UsuariosActivity.GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-
+        Toast.makeText(getApplicationContext(),getPackageName(),Toast.LENGTH_LONG).show();
         //adapter.notifyDataSetChanged();
 
     }

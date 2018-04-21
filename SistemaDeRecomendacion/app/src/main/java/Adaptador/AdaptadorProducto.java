@@ -1,6 +1,7 @@
 package Adaptador;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,9 +14,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kevca.sistemaderecomendacion.R;
+import com.example.kevca.sistemaderecomendacion.bl.UsuarioBL;
 import com.example.kevca.sistemaderecomendacion.domain.Producto;
 
 import com.bumptech.glide.Glide;
+import com.example.kevca.sistemaderecomendacion.domain.Usuario;
 
 import java.util.ArrayList;
 
@@ -77,6 +80,15 @@ public class AdaptadorProducto extends RecyclerView.Adapter<AdaptadorProducto.Pr
         tv_cantidad= (TextView) itemView.findViewById(R.id.tv_cantidad);
         iv_imagen = (ImageView) itemView.findViewById(R.id.iv_imagen);
         iv_menup = (ImageView) itemView.findViewById(R.id.iv_menup);
+
+
+
+        iv_imagen.setImageResource(mContext.getResources().getIdentifier(,"drawable",mContext.getPackageName()));
+
+
+
+
+
 
     }
 
