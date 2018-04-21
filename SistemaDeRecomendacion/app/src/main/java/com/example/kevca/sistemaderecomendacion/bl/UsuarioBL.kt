@@ -8,7 +8,7 @@ import java.util.Hashtable
  * Created by _Adrian_Prendas_ on 18/04/2018.
  */
 class UsuarioBL: BaseBL<Int, Usuario> {
-
+    
     override fun create(obj: Usuario): Usuario {
         hashTable[obj.id] = obj
         return obj
