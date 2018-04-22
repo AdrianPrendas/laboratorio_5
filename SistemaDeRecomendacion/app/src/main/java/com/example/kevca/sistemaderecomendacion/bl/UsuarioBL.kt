@@ -8,7 +8,7 @@ import java.util.Hashtable
  * Created by _Adrian_Prendas_ on 18/04/2018.
  */
 class UsuarioBL: BaseBL<Int, Usuario> {
-    
+
     override fun create(obj: Usuario): Usuario {
         hashTable[obj.id] = obj
         return obj
@@ -47,6 +47,7 @@ class UsuarioBL: BaseBL<Int, Usuario> {
         hashTable[304830405] = Usuario(304830405, "Esteban Montero Fonseca", "","esteban.montero.fonseca@est.una.ac.cr", "esteban",Usuario.ADMIN)
         hashTable[114830575] = Usuario(114830575, "Kevin Calderon Rodriguez", "","kevin.calderon.rodriguez@est.una.ac.cr", "kevin",Usuario.ADMIN)
         hashTable[604140420] = Usuario(604140420, "Adrian prendas Araya", "","adrian.prendas.araya@est.una.ac.cr", "adrian",Usuario.ADMIN)
+        hashTable[0] = Usuario(0, "admin", "","admin", "admin",Usuario.ADMIN)
     }
     private object Holder { val INSTANCE = UsuarioBL() }
     companion object {

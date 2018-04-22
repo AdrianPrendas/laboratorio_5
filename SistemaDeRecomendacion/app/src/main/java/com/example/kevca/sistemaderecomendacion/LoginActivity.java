@@ -29,6 +29,10 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.kevca.sistemaderecomendacion.bl.UsuarioBL;
+import com.example.kevca.sistemaderecomendacion.domain.Usuario;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -172,16 +176,32 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mEmailView.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
             cancel = true;
-        } else if (!isEmailValid(email)) {
+        } else if (!isEmailValid(email)&&!email.equals("admin")) {
             mEmailView.setError(getString(R.string.error_invalid_email));
             focusView = mEmailView;
-            cancel = true;
+            //cancel = true;
         }
+
+        if(!cancel && !email.equals("admin")){
+            cancel = true;
+            ArrayList<Usuario> listaUsuarios = new ArrayList(UsuarioBL.Companion.getInstance().readAll());
+            for(Usuario u: listaUsuarios){
+                if(u.getEmail().equals(email) && u.getPassword().equals(password)){
+                    Toast.makeText(getApplicationContext(),u.toString(),Toast.LENGTH_LONG).show();
+                    UsuarioBL.Companion.setSession(u.getId());
+                    cancel = false;
+                    break;
+                }
+            }
+        }
+
+        if(cancel)
+            Toast.makeText(this,"error usuario y/o contraseña invalidas",Toast.LENGTH_LONG).show();
 
         if (cancel) {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
-            focusView.requestFocus();
+            //focusView.requestFocus();
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.

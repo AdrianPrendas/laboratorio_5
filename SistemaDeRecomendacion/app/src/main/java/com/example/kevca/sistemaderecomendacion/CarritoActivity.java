@@ -1,5 +1,6 @@
 package com.example.kevca.sistemaderecomendacion;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.kevca.sistemaderecomendacion.bl.CarritoBL;
 import com.example.kevca.sistemaderecomendacion.bl.ProductoBL;
@@ -28,31 +31,33 @@ public class CarritoActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private AdaptadorProductoCarrito adapter;
     private ArrayList<Producto> listaProductos;
-    private Carrito carrito;
     public static ProductoBL productoBL = ProductoBL.Companion.getInstance();
-
-    int id=Usuario.Companion.getUSER();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carrito);
-        carrito= CarritoBL.Companion.getInstance().read(id);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 1);
         recyclerView.setLayoutManager(mLayoutManager);
-        adapter = new AdaptadorProductoCarrito(this, 114830575);
+        adapter = new AdaptadorProductoCarrito(this, UsuarioBL.Companion.getSession());
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new CarritoActivity.GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-
         //adapter.notifyDataSetChanged();
 
+        Button clickButton = (Button) findViewById(R.id.btnPagar);
+        clickButton.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Carrito c = CarritoBL.Companion.getInstance().read(UsuarioBL.Companion.getSession());
+                Toast.makeText(getApplicationContext(),"se procedio al pago de"+c.getPrecioTotal(),Toast.LENGTH_LONG).show();
+                c.pagar();
+                Intent mainIntent = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(mainIntent);
+            }
+        });
     }
-
-
 
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 

@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.kevca.sistemaderecomendacion.CarritoActivity;
 import com.example.kevca.sistemaderecomendacion.R;
 import com.example.kevca.sistemaderecomendacion.bl.CarritoBL;
 import com.example.kevca.sistemaderecomendacion.bl.UsuarioBL;
@@ -33,9 +34,13 @@ public class AdaptadorProductoCarrito extends RecyclerView.Adapter<AdaptadorProd
 
     public AdaptadorProductoCarrito(Context mContext, int id) {
         this.usuario = UsuarioBL.Companion.getInstance().read(id);
-        this.carrito=CarritoBL.Companion.getInstance().read(id);
-        this.listaProductos=carrito.toList();
+        this.carrito = CarritoBL.Companion.getInstance().read(id);
+        this.listaProductos = carrito.toList();
         this.mContext=mContext;
+
+        CarritoActivity v = (CarritoActivity) mContext;
+        TextView tv_precio = (TextView) v.findViewById(R.id.tv_total);
+        tv_precio.setText(String.valueOf(carrito.getPrecioTotal()));
     }
 
 
@@ -54,6 +59,7 @@ public class AdaptadorProductoCarrito extends RecyclerView.Adapter<AdaptadorProd
         holder.tv_precio.setText(String.valueOf(producto.getPrecio()));
         holder.tv_cantidad.setText(String.valueOf(producto.getCantidad()));
 
+        holder.iv_imagen.setImageResource(mContext.getResources().getIdentifier(producto.getImageUrl(),"drawable",mContext.getPackageName()));
 
         // loading album cover using Glide library
         //Glide.with(mContext).load("@android:drawable/product.png").into(holder.iv_imagen);
@@ -70,7 +76,7 @@ public class AdaptadorProductoCarrito extends RecyclerView.Adapter<AdaptadorProd
 
     public ProductoCarritoViewHolder(View itemView) {
         super(itemView);
-        tv_nombreProducto= (TextView) itemView.findViewById(R.id.tv_nombreProducto);
+        tv_nombreProducto= (TextView) itemView.findViewById(R.id.tv_nombreProductoCarrito);
         tv_precio= (TextView) itemView.findViewById(R.id.tv_precio);
         tv_cantidad= (TextView) itemView.findViewById(R.id.tv_cantidad);
         iv_imagen = (ImageView) itemView.findViewById(R.id.iv_imagen);

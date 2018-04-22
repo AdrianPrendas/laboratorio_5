@@ -14,6 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kevca.sistemaderecomendacion.R;
+import com.example.kevca.sistemaderecomendacion.bl.CarritoBL;
+import com.example.kevca.sistemaderecomendacion.bl.ProductoBL;
 import com.example.kevca.sistemaderecomendacion.bl.UsuarioBL;
 import com.example.kevca.sistemaderecomendacion.domain.Producto;
 
@@ -47,10 +49,14 @@ public class AdaptadorProducto extends RecyclerView.Adapter<AdaptadorProducto.Pr
 
     @Override
     public void onBindViewHolder(final ProductoViewHolder holder, int position) {
-        Producto producto = listaProductos.get(position);
+        final Producto producto = listaProductos.get(position);
         holder.tv_nombreProducto.setText(producto.getNombre());
         holder.tv_precio.setText(String.valueOf(producto.getPrecio()));
         holder.tv_cantidad.setText(String.valueOf(producto.getCantidad()));
+
+        holder.iv_imagen.setImageResource(mContext.getResources().getIdentifier(producto.getImageUrl(),"drawable",mContext.getPackageName()));
+
+
 
 
         // loading album cover using Glide library
@@ -59,7 +65,7 @@ public class AdaptadorProducto extends RecyclerView.Adapter<AdaptadorProducto.Pr
         holder.iv_menup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPopupMenu(holder.iv_menup);
+                showPopupMenu(holder.iv_menup,producto.getId());
             }
         });
     }
@@ -80,37 +86,30 @@ public class AdaptadorProducto extends RecyclerView.Adapter<AdaptadorProducto.Pr
         tv_cantidad= (TextView) itemView.findViewById(R.id.tv_cantidad);
         iv_imagen = (ImageView) itemView.findViewById(R.id.iv_imagen);
         iv_menup = (ImageView) itemView.findViewById(R.id.iv_menup);
-
-
-
-        iv_imagen.setImageResource(mContext.getResources().getIdentifier(,"drawable",mContext.getPackageName()));
-
-
-
-
-
-
     }
 
 
 }
-    private void showPopupMenu(View view) {
+    private void showPopupMenu(View view, int productId) {
         // inflate menu
         PopupMenu popup = new PopupMenu(mContext, view); //es el que da la vista para el menu
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.menu_producto, popup.getMenu());
-        popup.setOnMenuItemClickListener(new MyMenuItemClickListener());
+        popup.setOnMenuItemClickListener(new MyMenuItemClickListener(productId));
         popup.show();
     }
     class MyMenuItemClickListener implements PopupMenu.OnMenuItemClickListener {
-
-        public MyMenuItemClickListener() {
+        int productId;
+        public MyMenuItemClickListener(int pId) {
+            productId = pId;
         }
 
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {
             switch (menuItem.getItemId()) {
                 case R.id.action_add_cart:
+                    CarritoBL.Companion.getInstance().read(UsuarioBL.Companion.getSession())
+                            .addProducto(ProductoBL.Companion.getInstance().read(productId));
                     Toast.makeText(mContext, "Added to cart", Toast.LENGTH_SHORT).show();
                     return true;
             }

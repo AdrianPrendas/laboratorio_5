@@ -81,6 +81,17 @@ class CarritoBL: BaseBL<Int, Carrito> {
             ProductoBL.instance.read(0)?.let {
                 hashTable[604140420]?.addProducto(Producto(it,1))
             }
+
+            hashTable[0] = Carrito(0)
+            ProductoBL.instance.read(0)?.let {
+                hashTable[0]?.addProducto(Producto(it,1))
+            }
+            ProductoBL.instance.read(6)?.let {
+                hashTable[0]?.addProducto(Producto(it,1))
+            }
+            ProductoBL.instance.read(7)?.let {
+                hashTable[0]?.addProducto(Producto(it,1))
+            }
         }catch (e: RuntimeException){println(e.message)}
     }
     private object Holder { val INSTANCE = CarritoBL() }

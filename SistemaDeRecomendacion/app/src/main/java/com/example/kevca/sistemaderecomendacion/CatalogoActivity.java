@@ -25,27 +25,19 @@ public class CatalogoActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private AdaptadorProducto adapter;
-    private ArrayList<Producto> listaProductos;
-    public static ProductoBL productoBL = ProductoBL.Companion.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalogo);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        listaProductos = new ArrayList<>();
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(mLayoutManager);
-        listaProductos= new ArrayList<>(productoBL.readAll());
-        adapter = new AdaptadorProducto(this, listaProductos);
+        adapter = new AdaptadorProducto(this, new ArrayList(ProductoBL.Companion.getInstance().readAll()));
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-
         //adapter.notifyDataSetChanged();
-
     }
 
 
