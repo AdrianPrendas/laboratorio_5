@@ -40,7 +40,7 @@ public class AdaptadorProductoCarrito extends RecyclerView.Adapter<AdaptadorProd
 
         CarritoActivity v = (CarritoActivity) mContext;
         TextView tv_precio = (TextView) v.findViewById(R.id.tv_total);
-        tv_precio.setText(String.valueOf(carrito.getPrecioTotal()));
+        tv_precio.setText("$"+String.valueOf(carrito.getPrecioTotal()));
     }
 
 
@@ -56,7 +56,7 @@ public class AdaptadorProductoCarrito extends RecyclerView.Adapter<AdaptadorProd
     public void onBindViewHolder(final ProductoCarritoViewHolder holder, int position) {
         Producto producto = listaProductos.get(position);
         holder.tv_nombreProducto.setText(producto.getNombre());
-        holder.tv_precio.setText(String.valueOf(producto.getPrecio()));
+        holder.tv_precio.setText(String.format("$%.2f",producto.getPrecio()));
         holder.tv_cantidad.setText(String.valueOf(producto.getCantidad()));
 
         holder.iv_imagen.setImageResource(mContext.getResources().getIdentifier(producto.getImageUrl(),"drawable",mContext.getPackageName()));

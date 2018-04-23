@@ -51,17 +51,11 @@ public class AdaptadorProducto extends RecyclerView.Adapter<AdaptadorProducto.Pr
     public void onBindViewHolder(final ProductoViewHolder holder, int position) {
         final Producto producto = listaProductos.get(position);
         holder.tv_nombreProducto.setText(producto.getNombre());
-        holder.tv_precio.setText(String.valueOf(producto.getPrecio()));
+        holder.tv_precio.setText(String.format("$%.2f",producto.getPrecio()));
         holder.tv_cantidad.setText(String.valueOf(producto.getCantidad()));
-
         holder.iv_imagen.setImageResource(mContext.getResources().getIdentifier(producto.getImageUrl(),"drawable",mContext.getPackageName()));
-
-
-
-
         // loading album cover using Glide library
         //Glide.with(mContext).load("@android:drawable/product.png").into(holder.iv_imagen);
-
         holder.iv_menup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

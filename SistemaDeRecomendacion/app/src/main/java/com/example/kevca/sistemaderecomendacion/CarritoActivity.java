@@ -50,11 +50,8 @@ public class CarritoActivity extends AppCompatActivity {
         clickButton.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Carrito c = CarritoBL.Companion.getInstance().read(UsuarioBL.Companion.getSession());
-                Toast.makeText(getApplicationContext(),"se procedio al pago de"+c.getPrecioTotal(),Toast.LENGTH_LONG).show();
-                c.pagar();
-                Intent mainIntent = new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(mainIntent);
+                Intent intent = new Intent(getApplicationContext(),PagoActivity.class);
+                startActivity(intent);
             }
         });
     }
