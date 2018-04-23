@@ -38,14 +38,13 @@ public class CarritoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carrito);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 1);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(mLayoutManager);
         adapter = new AdaptadorProductoCarrito(this, UsuarioBL.Companion.getSession());
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new CarritoActivity.GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         //adapter.notifyDataSetChanged();
-
         Button clickButton = (Button) findViewById(R.id.btnPagar);
         clickButton.setOnClickListener( new View.OnClickListener() {
             @Override
