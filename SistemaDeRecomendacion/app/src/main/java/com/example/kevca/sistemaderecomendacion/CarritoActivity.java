@@ -40,7 +40,14 @@ public class CarritoActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(mLayoutManager);
-        adapter = new AdaptadorProductoCarrito(this, UsuarioBL.Companion.getSession());
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            int value = extras.getInt("key");
+            adapter = new AdaptadorProductoCarrito(this, value);
+            //The key argument here must match that used in the other activity
+        }else{
+            adapter = new AdaptadorProductoCarrito(this, UsuarioBL.Companion.getSession());
+        }
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new CarritoActivity.GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());

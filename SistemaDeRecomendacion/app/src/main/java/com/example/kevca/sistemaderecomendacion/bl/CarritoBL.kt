@@ -37,6 +37,21 @@ class CarritoBL: BaseBL<Int, Carrito> {
     init{
         //USERS
         try {
+            hashTable[813156487] = Carrito(813156487);
+            hashTable[908069482] = Carrito(908069482);
+            hashTable[118510669] = Carrito(118510669);
+            hashTable[494658212] = Carrito(494658212);
+            hashTable[673424513] = Carrito(673424513);
+            hashTable[876415060] = Carrito(876415060);
+            hashTable[984357664] = Carrito(984357664);
+            hashTable[964465378] = Carrito(964465378);
+            hashTable[769438762] = Carrito(769438762);
+            hashTable[368377663] = Carrito(368377663);
+            hashTable[304830405] = Carrito(304830405);
+            hashTable[114830575] = Carrito(114830575);
+            hashTable[604140420] = Carrito(604140420);
+            hashTable[0] = Carrito(0);
+
             hashTable[964465378] = Carrito(964465378)
 
             ProductoBL.instance.read(0)?.let {

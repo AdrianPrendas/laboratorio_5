@@ -1,6 +1,7 @@
 package Adaptador;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,7 +13,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.kevca.sistemaderecomendacion.CarritoActivity;
+import com.example.kevca.sistemaderecomendacion.PagoActivity;
 import com.example.kevca.sistemaderecomendacion.R;
+import com.example.kevca.sistemaderecomendacion.bl.CarritoBL;
 import com.example.kevca.sistemaderecomendacion.domain.Usuario;
 
 import java.util.ArrayList;
@@ -42,11 +46,11 @@ public class AdaptadorUsuario extends RecyclerView.Adapter<AdaptadorUsuario.Usua
 
     @Override
     public void onBindViewHolder(final UsuarioViewHolder holder, int position) {
-        Usuario usuario = listaUsuarios.get(position);
+        final Usuario usuario = listaUsuarios.get(position);
         holder.tv_nombreUsuario.setText(usuario.getNombre());
         holder.tv_id.setText(String.valueOf(usuario.getId()));
         holder.tv_email.setText(String.valueOf(usuario.getEmail()));
-
+        holder.iv_imagen.setImageResource(R.drawable.profile);
 
         // loading album cover using Glide library
         //Glide.with(mContext).load("@android:drawable/product.png").into(holder.iv_imagen);
@@ -54,7 +58,7 @@ public class AdaptadorUsuario extends RecyclerView.Adapter<AdaptadorUsuario.Usua
         holder.iv_menup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPopupMenu(holder.iv_menup);
+                showPopupMenu(holder.iv_menup, usuario.getId());
             }
         });
     }
@@ -80,24 +84,28 @@ public class AdaptadorUsuario extends RecyclerView.Adapter<AdaptadorUsuario.Usua
 
 
 }
-    private void showPopupMenu(View view) {
+    private void showPopupMenu(View view, int id) {
         // inflate menu
         PopupMenu popup = new PopupMenu(mContext, view); //es el que da la vista para el menu
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.menu_usuario, popup.getMenu());
-        popup.setOnMenuItemClickListener(new MyMenuItemClickListener());
+        popup.setOnMenuItemClickListener(new MyMenuItemClickListener(id));
         popup.show();
     }
     class MyMenuItemClickListener implements PopupMenu.OnMenuItemClickListener {
-
-        public MyMenuItemClickListener() {
+        int id=0;
+        public MyMenuItemClickListener(int id) {
+            this.id=id;
         }
 
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {
             switch (menuItem.getItemId()) {
                 case R.id.action_add_cart:
-                    Toast.makeText(mContext, "Added to cart", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(mContext,CarritoActivity.class);
+                    intent.putExtra("key", id);
+                    mContext.startActivity(intent);
+                    Toast.makeText(mContext, "Cart", Toast.LENGTH_SHORT).show();
                     return true;
             }
             return false;
