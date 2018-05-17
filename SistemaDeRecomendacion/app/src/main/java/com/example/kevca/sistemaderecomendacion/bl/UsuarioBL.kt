@@ -34,7 +34,7 @@ class UsuarioBL: BaseBL<Int, Usuario> {
     }
 
     init{
-        hashTable[813156487] = Usuario(813156487, "Angel Yvanes Gerardo", "", "angel.yvanes.gerardo@una.ac.crr", "angel",Usuario.USER)
+        hashTable[813156487] = Usuario(813156487, "Angel Yvanes Gerardo", "", "angel.yvanes.gerardo@una.ac.cr", "angel",Usuario.USER)
         hashTable[908069482] = Usuario(908069482, "Carlos Asencio Ysidro", "", "carlos.asencio.ysidro@una.ac.cr", "carlos",Usuario.USER)
         hashTable[118510669] = Usuario(118510669, "Emiliano Sepulbeda Troche", "", "emiliano.sepulbeda.troche@una.ac.cr", "emiliano",Usuario.USER)
         hashTable[494658212] = Usuario(494658212, "Santino Peredo Dongu", "", "santino.peredo.dongu@una.ac.cr", "santino",Usuario.USER)
