@@ -201,6 +201,35 @@ end eliminarCarrito;
 /
 show error
 
+--FUNCION PARA LISTAR CARRITOS
+create or replace function listaCarritos
+return Types.ref_cursor
+as
+carrito_cursor types.ref_cursor;
+begin 
+open carrito_cursor for
+select c.usuario, c.producto, c.cantidad
+from carritos c;
+return carrito_cursor;
+end listaCarritos;
+/
+show error
+
+--FUNCION PARA BUSCAR CARRITO
+create or replace function buscarCarrito(PUsuario in int)
+return Types.ref_cursor
+as
+carrito_cursor types.ref_cursor;
+begin 
+open carrito_cursor for 
+select c.usuario,c.producto, c.cantidad
+from carritos c
+where usuario=PUsuario;
+return carrito_cursor;
+end buscarCarrito;
+/
+show error
+
 --INSERTANDO USUARIOS
 exec insertarUsuarios(813156487,'Angel Yvanes Gerardo','persona1','angel.yvanes.gerardo@una.ac.cr','angel',1);
 exec insertarUsuarios(908069482,'Carlos Asencio Ysidro','persona2','carlos.asencio.ysidro@una.ac.cr','carlos',1);
@@ -231,8 +260,14 @@ exec insertarProductos(10,'Joystick de xbox','joystick_xbox',30,10);
 exec insertarProductos(11,'Joystick de xbox 360','joystick_xbox360',25,7);
 exec insertarProductos(12,'Joystick de play 3','joystick_play3',30,3);
 
+--INSERTA CARRITOS
+exec insertarCarrito(304830405,1,2);
+exec insertarCarrito(604140420,2,3);
+
 select listaProductos from dual;
 select listaUsuarios from dual;
+select listaCarritos from dual;
 
 select buscarProductos(1) from dual;
 select buscarUsuarios(304830405) from dual;
+select buscarCarrito(304830405) from dual;
