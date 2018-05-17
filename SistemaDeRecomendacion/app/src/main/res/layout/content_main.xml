@@ -4,8 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.kevca.sistemaderecomendacion.MainActivity"
     tools:showIn="@layout/app_bar_main">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sistema de Recomendacion"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="106dp" />
 
 </android.support.constraint.ConstraintLayout>
