@@ -1,5 +1,6 @@
 spool db.log
-conn system/root;
+grant all privileges to tor identified by root;
+conn tor/root
 
 set LINESIZE 32000;
 set PAGESIZE 40000;
